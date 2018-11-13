@@ -5,7 +5,8 @@ RSpec.configure do |config|
   require 'capybara/rspec'
   require 'rspec'
   require_relative '../app'
-  Capybara.app
+  Capybara.app = Battle
+
 
   config.expect_with :rspec do |expectations|
 
