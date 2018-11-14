@@ -25,7 +25,8 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-    session[:player_2_hp] -= 10
-    redirect '/play'
+    @player_1_name = $player_1_name.name
+    @player_2_name = $player_2_name.name
+    erb(:attack)
   end
 end
