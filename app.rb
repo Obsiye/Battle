@@ -22,4 +22,9 @@ class Battle < Sinatra::Base
     @player_2_hp = session[:player_2_hp]
     erb(:play)
   end
+
+  get '/attack' do
+    session[:player_2_hp] -= 10
+    redirect '/play'
+  end
 end
