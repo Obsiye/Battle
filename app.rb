@@ -23,7 +23,10 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     @game = $game
+    @current_player = $game.players[0].name
+    @current_enemy = $game.players[1].name
     $game.attack($game.players[1])
+    $game.switch_turn
     erb(:attack)
   end
 end
