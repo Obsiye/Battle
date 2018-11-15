@@ -31,4 +31,9 @@ class Battle < Sinatra::Base
     @game.switch_turn
     erb(:attack)
   end
+
+  get '/gameover' do
+    @loser = @game.loser.name
+    erb(:gameover)
+  end
 end
