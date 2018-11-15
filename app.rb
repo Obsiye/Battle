@@ -23,10 +23,19 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     @game = $game
-    @current_player = $game.players[0].name
-    @current_enemy = $game.players[1].name
-    $game.attack($game.players[1])
-    $game.switch_turn
-    erb(:attack)
+    @current_player = $game.players.first.name
+    @current_enemy = @game.players.last.name
+    @game.attack(@game.players.last)
+    @game.switch_turn
+    if @game.game_over?
+      redirect '/gameover'
+    else
+      erb(:attack)
+    end
+  end
+
+  get '/gameover' do
+    @loser = $game.loser.name
+    erb(:gameover)
   end
 end

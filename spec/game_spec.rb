@@ -1,6 +1,6 @@
 describe Game do
-  let(:player1) { double(:player, :reduce_hp => true) }
-  let(:player2) { double(:player, :reduce_hp => true) }
+  let(:player1) { double(:player, :reduce_hp => true, :hp => 60) }
+  let(:player2) { double(:player, :reduce_hp => true, :hp => 60) }
   let(:subject) { Game.new(player1, player2) }
 
   context "#initialize" do
@@ -13,6 +13,12 @@ describe Game do
     it "reduces the player's HP" do
       expect(player2).to receive :reduce_hp
       subject.attack(player2)
+    end
+  end
+
+  context "#game_over?" do
+    it 'should return false if players HP is more than 0' do
+      expect(subject.game_over?).to eq false
     end
   end
 end

@@ -12,4 +12,19 @@ class Game
   def switch_turn
     @players.rotate!
   end
+
+  def game_over?
+    losing_players.any?
+  end
+
+  def loser
+    losing_players.first
+  end
+
+  private
+
+  def losing_players
+    players.select { |player| player.hp <= 0 }
+  end
+
 end
