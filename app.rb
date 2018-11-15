@@ -29,7 +29,11 @@ class Battle < Sinatra::Base
     @current_enemy = @game.players[1].name
     @game.attack(@game.players[1])
     @game.switch_turn
-    erb(:attack)
+    if @game.game_over?
+      redirect '/gameover'
+    else
+      erb(:attack)
+    end
   end
 
   get '/gameover' do
