@@ -3,7 +3,6 @@ require './lib/player.rb'
 require './lib/game.rb'
 
 class Battle < Sinatra::Base
-  enable :sessions
 
   before do
     @game = Game.instance
